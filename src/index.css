@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Deep space dark theme */
+    --background: 220 20% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 95%;
+
+    /* Neon cyan primary */
+    --primary: 175 80% 50%;
+    --primary-foreground: 220 20% 8%;
+
+    /* Muted purple secondary */
+    --secondary: 250 30% 25%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Warm amber accent */
+    --accent: 38 95% 55%;
+    --accent-foreground: 220 20% 8%;
+
+    /* Alert red for lockdown */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Success green */
+    --success: 145 70% 45%;
+    --success-foreground: 220 20% 8%;
+
+    /* Warning amber */
+    --warning: 38 95% 55%;
+    --warning-foreground: 220 20% 8%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 15%;
+    --ring: 175 80% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom CodeLock tokens */
+    --glow-primary: 175 80% 50%;
+    --glow-warning: 38 95% 55%;
+    --glow-danger: 0 75% 55%;
+    
+    /* Gradients */
+    --gradient-dark: linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(220 18% 12%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 18% 14%) 0%, hsl(220 18% 10%) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(175 80% 50% / 0.2) 0%, hsl(250 30% 35% / 0.2) 100%);
+    --gradient-danger: linear-gradient(135deg, hsl(0 75% 55% / 0.3) 0%, hsl(0 60% 40% / 0.3) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(175 80% 50% / 0.3);
+    --shadow-warning: 0 0 30px hsl(38 95% 55% / 0.4);
+    --shadow-danger: 0 0 40px hsl(0 75% 55% / 0.5);
+    --shadow-card: 0 8px 32px hsl(220 20% 4% / 0.5);
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 175 80% 50%;
+    --sidebar-primary-foreground: 220 20% 8%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 175 80% 50%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 210 20% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-warning {
+    box-shadow: var(--shadow-warning);
+  }
+
+  .glow-danger {
+    box-shadow: var(--shadow-danger);
+  }
+
+  /* Pulse animation for warnings */
+  .pulse-warning {
+    animation: pulse-warning 1.5s ease-in-out infinite;
+  }
+
+  .pulse-danger {
+    animation: pulse-danger 1s ease-in-out infinite;
+  }
+
+  /* Breathing animation for relax mode */
+  .breathing {
+    animation: breathing 4s ease-in-out infinite;
+  }
+
+  /* Float animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--primary) / 0.3) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card glass effect */
+  .glass-card {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Lockdown overlay */
+  .lockdown-overlay {
+    background: linear-gradient(
+      180deg,
+      hsl(0 75% 10% / 0.98) 0%,
+      hsl(0 60% 8% / 0.98) 100%
+    );
+    backdrop-filter: blur(10px);
+  }
+
+  /* Big touch-friendly button */
+  .btn-xl {
+    @apply px-8 py-6 text-xl font-semibold rounded-2xl transition-all duration-300;
+  }
+
+  /* Timer display */
+  .timer-display {
+    @apply font-mono text-7xl font-bold tracking-wider;
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  }
+
+  /* Progress bar glow */
+  .progress-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Keyframes */
+  @keyframes pulse-warning {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(38 95% 55% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(38 95% 55% / 0.6);
+    }
+  }
+
+  @keyframes pulse-danger {
+    0%, 100% {
+      box-shadow: 0 0 30px hsl(0 75% 55% / 0.4);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 60px hsl(0 75% 55% / 0.7);
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes breathing {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes countdown {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: 283;
+    }
+  }
+
+  /* Rain animation for relax mode */
+  @keyframes rain {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  .rain-drop {
+    animation: rain linear infinite;
+  }
+}
